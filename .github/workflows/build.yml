@@ -25,7 +25,7 @@ jobs:
 
       - name: Build debug APK
         working-directory: mcq_scanner
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
