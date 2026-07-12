@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Light theme: cream background, maroon primary, gold accent -->
+    <style name="Theme.MCQScanner" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/tnhs_maroon</item>
+        <item name="colorPrimaryDark">@color/tnhs_maroon_dark</item>
+        <item name="colorAccent">@color/tnhs_gold</item>
+        <item name="colorSecondary">@color/tnhs_gold</item>
+        <item name="android:windowBackground">@color/tnhs_cream</item>
+        <item name="android:textColorPrimary">@color/tnhs_ink</item>
+        <item name="android:statusBarColor">@color/tnhs_maroon_dark</item>
+    </style>
+
+    <!-- Dark theme: dark maroon surfaces, gold accent still pops -->
+    <style name="Theme.MCQScanner.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/tnhs_maroon</item>
+        <item name="colorPrimaryDark">@color/tnhs_maroon_dark</item>
+        <item name="colorAccent">@color/tnhs_gold</item>
+        <item name="colorSecondary">@color/tnhs_gold</item>
+        <item name="android:windowBackground">@color/tnhs_ink</item>
+        <item name="android:statusBarColor">@color/tnhs_maroon_dark</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.MCQScanner.AlertDialog.WhiteButtons</item>
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.MCQScanner.AlertDialog.WhiteButtons</item>
+    </style>
+
+    <!-- Black theme: true black (OLED-friendly), gold accent only -->
+    <style name="Theme.MCQScanner.Black" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/black_surface</item>
+        <item name="colorPrimaryDark">@color/black_bg</item>
+        <item name="colorAccent">@color/tnhs_gold</item>
+        <item name="colorSecondary">@color/tnhs_gold</item>
+        <item name="android:windowBackground">@color/black_bg</item>
+        <item name="android:statusBarColor">@color/black_bg</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.MCQScanner.AlertDialog.WhiteButtons</item>
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.MCQScanner.AlertDialog.WhiteButtons</item>
+    </style>
+
+    <!-- Forces AlertDialog action-button text (e.g. "Cancel") to white — the
+         default MaterialComponents dialog button style ties text color to
+         colorPrimary, which reads poorly against the Dark/Black theme's own
+         dark surfaces. Only applied to Dark/Black (see above); the Light
+         theme's default dialog styling already reads fine. -->
+    <style name="ThemeOverlay.MCQScanner.AlertDialog.WhiteButtons" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.MCQScanner.Button.AlertDialogWhite</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.MCQScanner.Button.AlertDialogWhite</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.MCQScanner.Button.AlertDialogWhite</item>
+    </style>
+
+    <style name="Widget.MCQScanner.Button.AlertDialogWhite" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

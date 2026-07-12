@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.tnhs.mcqscanner'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.tnhs.mcqscanner"
+        minSdk 24
+        targetSdk 34
+        versionCode 15
+        versionName "1.4"
+
+        // OpenCV's AAR bundles native .so libraries for 4 CPU architectures
+        // (arm64-v8a, armeabi-v7a, x86, x86_64) — the x86/x86_64 ones only
+        // matter for the Android Studio emulator, never for a real phone.
+        // Restricting to the two real-device ABIs cuts a large chunk off
+        // the APK size with no effect on installing to an actual device.
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a"
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.exifinterface:exifinterface:1.3.7'
+    implementation 'androidx.activity:activity-ktx:1.9.0'
+
+    // Real computer-vision template matching for corner-marker detection —
+    // replaces the earlier hand-rolled pixel-darkness heuristic, which kept
+    // proving too fragile (missed real markers under some lighting, and
+    // false-matched dark backgrounds like grass/walls/tables that had none
+    // of the marker's actual shape). Official Maven Central AAR since
+    // OpenCV 4.9.0 — no native SDK download/unzip needed, just resolves
+    // like any other Gradle dependency.
+    implementation 'org.opencv:opencv:4.9.0'
+
+    // CameraX: live in-app preview + capture, replacing the old hand-off to
+    // the system Camera app via ACTION_IMAGE_CAPTURE.
+    def camerax_version = "1.3.4"
+    implementation "androidx.camera:camera-core:$camerax_version"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:$camerax_version"
+}

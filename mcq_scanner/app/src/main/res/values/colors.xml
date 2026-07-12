@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Derived from Tarlac National High School seal -->
+    <color name="tnhs_maroon">#6B0F14</color>
+    <color name="tnhs_maroon_dark">#4A0709</color>
+    <color name="tnhs_gold">#E8B923</color>
+    <color name="tnhs_gold_light">#F5D97A</color>
+    <color name="tnhs_cream">#FFF8E7</color>
+    <color name="tnhs_cream_dark">#F2E9D3</color>
+    <color name="tnhs_ink">#221111</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Black theme variant -->
+    <color name="black_bg">#0D0D0D</color>
+    <color name="black_surface">#1A1A1A</color>
+</resources>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:importantForAutofill="noExcludeDescendants"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Answer Sheet Template"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTestName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Test name"
+            android:layout_marginTop="16dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etQuestionCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of questions"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSubjectTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject teacher (optional)"
+            android:layout_marginTop="8dp" />
+
+        <RadioGroup
+            android:id="@+id/rgChoiceCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <RadioButton
+                android:id="@+id/rb4Choices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A–D"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rb5Choices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A–E"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paper size"
+            android:textSize="12sp"
+            android:alpha="0.7"
+            android:layout_marginTop="16dp" />
+
+        <RadioGroup
+            android:id="@+id/rgPaperLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbHalfCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="½ cross"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rbHalfLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="½ length"
+                android:layout_marginStart="16dp" />
+
+            <RadioButton
+                android:id="@+id/rbQuarterPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¼ page"
+                android:layout_marginStart="16dp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Layout"
+            android:textSize="12sp"
+            android:alpha="0.7"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Columns" />
+
+            <Button
+                android:id="@+id/btnColumnsMinus"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="−" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etColumnsValue"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/btnColumnsPlus"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="+" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Questions per column" />
+
+            <Button
+                android:id="@+id/btnRowsMinus"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="−" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRowsValue"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="10" />
+
+            <Button
+                android:id="@+id/btnRowsPlus"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="+" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLayoutHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:alpha="0.7"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvKeyStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No answer key set yet"
+            android:textSize="13sp"
+            android:alpha="0.8"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnCreateKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Answer Key"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnPreviewBlank"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Blank Preview"
+                android:backgroundTint="?attr/colorPrimary"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnPreviewKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Answer Key Preview"
+                android:backgroundTint="?attr/colorPrimary"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPreviewNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:alpha="0.7"
+            android:layout_marginTop="4dp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DDDDDD"
+            android:layout_marginTop="8dp"
+            android:padding="1dp">
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="Answer sheet preview" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnUseTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Use This Template"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="?attr/colorAccent"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btnGeneratePdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate &amp; Share PDF"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

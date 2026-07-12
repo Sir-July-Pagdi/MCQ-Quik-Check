@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Exam-day photo as a washed-out background: full-opacity image at the
+         bottom, then a scrim using the theme's own window background color
+         at high opacity on top of it, so the photo reads as a faint texture
+         rather than competing with foreground text/buttons in any theme. -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/exam_background"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
+        android:alpha="0.93" />
+
+    <!-- IMPORTANT: this ScrollView is declared BEFORE the footer below, not
+         after — in a FrameLayout, later children draw on top and get touch
+         priority in overlapping regions. With this the other way around,
+         the ScrollView (spanning the full screen height) was silently
+         swallowing taps on the footer's version number, even in its own
+         bottom padding where nothing is visibly drawn. -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:paddingBottom="56dp"
+        android:importantForAutofill="noExcludeDescendants"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- App header: stays pinned to the top. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/app_logo"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/app_name"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/btnTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌓"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Everything below the header vertically centers in whatever
+                 space is left (thanks to fillViewport + weight=1 here), and
+                 still scrolls normally if it doesn't all fit. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvTemplateSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No template set up yet"
+                    android:textSize="14sp"
+                    android:padding="12dp"
+                    android:background="#22000000" />
+
+                <Button
+                    android:id="@+id/btnGenerateSheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generate Answer Sheet Template"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvAnswerKeyStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No answer key set yet"
+                    android:textSize="13sp"
+                    android:alpha="0.8"
+                    android:layout_marginTop="16dp" />
+
+                <Button
+                    android:id="@+id/btnSaveTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save Test"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btnLoadTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Load Test"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btnScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Scan Filled Sheets"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="?attr/colorAccent"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Fixed footer: version (tap for changelog) + developer credit, pinned
+         to the bottom center of the screen rather than scrolling away with
+         the content above it. Declared LAST so it draws on top of the
+         ScrollView above and actually receives its own taps. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v0.0"
+            android:textColor="?android:attr/textColorPrimary"
+            android:alpha="0.75"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_credit"
+            android:textSize="11sp"
+            android:alpha="0.7" />
+    </LinearLayout>
+</FrameLayout>
